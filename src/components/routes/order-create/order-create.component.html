@@ -1,0 +1,32 @@
+<div class="card" [class.bg-dark]="isDark" [class.text-white]="isDark">
+    <div class="card-body">
+      <h2 class="card-title h5 mb-3">Nueva Orden de Compra</h2>
+      <form [formGroup]="ordenForm" (ngSubmit)="crearOrden()">
+        <div class="mb-3">
+          <label class="form-label">Cliente:</label>
+          <input  formControlName="cliente" name="cliente" class="form-control" required minlength="3" maxlength="50" placeholder="Nombre del cliente" />
+        </div>
+        <div formArrayName="productos" class="mb-3">
+            <label class="form-label">Producto:</label>
+            @for (item of productos.controls; track $index) {
+              <div class="mb-2 d-flex gap-2" [formGroupName]="$index">
+                <input formControlName="nombre" name="nombre" class="form-control" placeholder="Nombre del producto" required />
+                <input formControlName="cantidad" name="cantidad" type="number" class="form-control" placeholder="Cantidad" required min="1" max="1000" />
+                <button class="btn btn-secondary" type="button" (click)="eliminarProducto($index)">Eliminar</button>
+              </div>
+            }
+            <div class="mb-2 d-flex gap-2">
+              <button type="button" class="btn btn-primary" (click)="agregarProducto()">Agregar Producto</button>
+            </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Fecha:</label>
+          <input formControlName="fecha" name="fecha" type="date" class="form-control" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Crear Orden</button>
+      </form>
+    </div>
+  </div>
+
