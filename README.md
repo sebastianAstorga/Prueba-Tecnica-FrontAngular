@@ -20,5 +20,4 @@ Este proyecto es una Single Page Application (SPA) desarrollada con **Angular 19
 
 ```bash
 git clone https://github.com/tuusuario/ordenes-compra-spa.git
-cd ordenes-compra-spa
 npm install
